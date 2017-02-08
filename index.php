@@ -64,7 +64,7 @@ $entries = scandir("billets", SCANDIR_SORT_DESCENDING);
               if ($entry!=".."&&$entry!=".")
               {
               $justname = pathinfo($entry);
-              echo '<li><a href="index.php?content=' . $entry .'">' . $justname['filename'] . '</a></li>';
+              echo '<li><a  href="index.php?content=' . $entry .'">' . $justname['filename'] . '</a></li>';
             }
             }
           ?>
