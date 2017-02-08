@@ -1,6 +1,6 @@
 <?php
 $getContent = $_GET["content"];
-$entries = scandir("billets");
+$entries = scandir("billets", SCANDIR_SORT_DESCENDING);
 ?>
 
 <!doctype html>
@@ -25,6 +25,7 @@ $entries = scandir("billets");
     <!-- <a href= "#"><img id="maingauche" src="img/gauche.png"/>
     </a>-->
 
+
     <article id="article">
     <?php
     include "billets/$getContent";
@@ -33,13 +34,16 @@ $entries = scandir("billets");
     <div id="maindroite"></div>
 
 
-  <aside id="aside">
+    <aside id="aside">
       <ul>
           <?php
+
             foreach($entries as $entry)
             {
-              if ($entry!=".."&&$entry!="."){
-              echo "<li><a href='index.php?content=$entry'>$entry</a></li>";
+              if ($entry!=".."&&$entry!=".")
+              {
+              $justname = pathinfo($entry);
+              echo '<li><a href="index.php?content=' . $entry .'">' . $justname['filename'] . '</a></li>';
             }
             }
           ?>
@@ -60,6 +64,29 @@ $entries = scandir("billets");
 
 
 <!--
+Solution de Max:
+$path_parts = pathinfo($entry);
+echo "<li><a href='index.php?content=$entry'>" . $path_parts['filename'] . "</a></li>";
+
+solution Daniel:
+$justname = basename($entry, ".php");
+echo "<li><a href='index.php?content=$justname'>$justname</a></li>";
+
+romain:
+$article_dir = "billets";
+
+if(isset($_GET['content']))
+{
+  $article_path = "$article_dir/" . $_GET["content"] . ".php";
+
+  if(
+    dirname(
+      realpath($article_path)
+      ) == (
+      realpath("./$articles_dir")
+        )
+    )
+}
 
 
   <li><a href="index.php?content=home.php" <?php if ($_GET["content"] == 'home.php')  { echo "class='current'"; }; ?>>Tableau de bord</a></li>

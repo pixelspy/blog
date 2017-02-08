@@ -73,7 +73,9 @@ footer{
   list-style-type: none;
 }
 
-
+a{
+  text-decoration: none;
+}
 
 /* pour mettre tout à zero
 margin: 0;
