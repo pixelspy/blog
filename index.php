@@ -27,9 +27,30 @@ $entries = scandir("billets", SCANDIR_SORT_DESCENDING);
 
 
     <article id="article">
+
     <?php
-    include "billets/$getContent";
-    ?>
+
+                 $articles_dir = "billets";
+                 $show_article = false;
+
+                 if (isset($_GET['content']))
+                 {
+                   $article_path = "$articles_dir/" . $_GET["content"] ;
+                   if (
+                     dirname(
+                       realpath($article_path)
+                       ) == (
+                         realpath("./$articles_dir")
+                         )
+                   )
+                   {
+                     $show_article = true;
+                     include $article_path;
+
+                   }
+                 }
+                 ?>
+
     </article>
     <div id="maindroite"></div>
 
