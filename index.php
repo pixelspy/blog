@@ -31,28 +31,38 @@ $entries = scandir("billets", SCANDIR_SORT_DESCENDING);
     <?php
 
                  $articles_dir = "billets";
-                 $show_article = false;
 
                  if (isset($_GET['content']))
                  {
                    $article_path = "$articles_dir/" . $_GET["content"] ;
                    if (
-                     dirname(
-                       realpath($article_path)
-                       ) == (
-                         realpath("./$articles_dir")
-                         )
+                      dirname(
+                        realpath($article_path)
+                      ) == (
+                        realpath($articles_dir)
+                      )
                    )
                    {
-                     $show_article = true;
                      include $article_path;
-
                    }
                  }
+                 $current_file = array_search($_GET["content"] , $entries);
+                 /* affiche la clé (du tableau numéroté) donc: 0, 1, 2, 3
+                 find out the position of a value in an array:
+                 http://stackoverflow.com/questions/2399310/php-how-to-find-out-the-position-of-a-value-in-an-array
+                 fonction: array_search:
+                 http://php.net/manual/en/function.array-search.php
+                 */
+                 $previous_entries = $entries[$current_file -1];
+                 $next_entries = $entries[$current_file +1];
                  ?>
+        <div>
+          <a href="index.php?content=<?= $previous_entries ?>"><img id="icones" src="img/gauche.png"/> </a>
+          <a href="index.php?content=<?= $next_entries ?>"><img id="icones" src="img/droite.png"/> </a>
+        </div>
+
 
     </article>
-    <div id="maindroite"></div>
 
 
     <aside id="aside">
@@ -63,9 +73,9 @@ $entries = scandir("billets", SCANDIR_SORT_DESCENDING);
             {
               if ($entry!=".."&&$entry!=".")
               {
-              $justname = pathinfo($entry);
-              echo '<li><a  href="index.php?content=' . $entry .'">' . $justname['filename'] . '</a></li>';
-            }
+                $justname = pathinfo($entry);
+                echo '<li><a  href="index.php?content=' . $entry .'">' . $justname['filename'] . '</a></li>';
+              }
             }
           ?>
       </ul>

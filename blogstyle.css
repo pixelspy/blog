@@ -9,7 +9,9 @@ body{
   font-family: "Sans";
   height: 100%;
 }
-
+a #icones{
+  width: 50px;
+}
 #headercontainer, #footercontainer{
   font-family: "Josefin";
   text-align: justify;
