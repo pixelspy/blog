@@ -53,12 +53,18 @@ $entries = scandir("billets", SCANDIR_SORT_DESCENDING);
                  fonction: array_search:
                  http://php.net/manual/en/function.array-search.php
                  */
-                 $previous_entries = $entries[$current_file -1];
-                 $next_entries = $entries[$current_file +1];
+                 $previous_entries = $entries[$current_file - 1];
+                 $next_entries = $entries[$current_file + 1];
+
                  ?>
         <div>
+          <?php if($current_file > 0){ ?>
           <a href="index.php?content=<?= $previous_entries ?>"><img id="icones" src="img/gauche.png"/> </a>
+          <?php } ?>
+
+          <?php if($current_file < ($next_entries)){ ?>
           <a href="index.php?content=<?= $next_entries ?>"><img id="icones" src="img/droite.png"/> </a>
+          <?php } ?>
         </div>
 
 
@@ -80,7 +86,20 @@ $entries = scandir("billets", SCANDIR_SORT_DESCENDING);
           ?>
       </ul>
   </aside>
+
+
+
   </main>
+  <div id="form-container">
+    <h2>Nouvel article</h2><br/>
+    <form action="insertionArticle.php" method="POST">
+     <p>Date de l'article: <input type="date" name="date"/></p><br/>
+     <p>Texte: <br/><br/><textarea name="message" rows="10" cols="50"></textarea></p>
+     <br/>
+     <input type="submit" name="ok" value="Envoyer">
+    </form>
+  </div>
+
   <footer id="footercontainer">
     <ul class="social">
       <a target="_blank" href="https://www.facebook.com/mahana.houdini"><i class="fa fa-facebook"></i></a>
