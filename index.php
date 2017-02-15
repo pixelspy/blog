@@ -47,6 +47,8 @@ $entries = scandir("billets", SCANDIR_SORT_DESCENDING);
                    }
                  }
                  $current_file = array_search($_GET["content"] , $entries);
+
+          
                  /* affiche la clé (du tableau numéroté) donc: 0, 1, 2, 3
                  find out the position of a value in an array:
                  http://stackoverflow.com/questions/2399310/php-how-to-find-out-the-position-of-a-value-in-an-array
@@ -60,6 +62,7 @@ $entries = scandir("billets", SCANDIR_SORT_DESCENDING);
         <div>
           <?php if($current_file > 0){ ?>
           <a href="index.php?content=<?= $previous_entries ?>"><img id="icones" src="img/gauche.png"/> </a>
+
           <?php } ?>
 
           <?php if($current_file < ($next_entries)){ ?>
@@ -80,7 +83,14 @@ $entries = scandir("billets", SCANDIR_SORT_DESCENDING);
               if ($entry!=".."&&$entry!=".")
               {
                 $justname = pathinfo($entry);
-                echo '<li><a  href="index.php?content=' . $entry .'">' . $justname['filename'] . '</a></li>';
+                if($_GET["generator"] == "script")
+                {
+                    echo '<li><a  href="' . $_GET["generated"] .'">' . $justname['filename'] . '</a></li>';
+                }
+                else
+                {
+                    echo '<li><a  href="index.php?content=' . $entry .'">' . $justname['filename'] . '</a></li>';
+                }
               }
             }
           ?>

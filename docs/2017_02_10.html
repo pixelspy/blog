@@ -1,0 +1,104 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" style="text/css" href="blogstyle.css">
+    <script src="https://use.fontawesome.com/abd2365aee.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <title>Journal de bord</title>
+</head>
+
+<body>
+  <header id="headercontainer">
+      <h2 class="animated bounceIn">Blog de Mahana</h2>
+      <h2>Tableau de bord</h2>
+          <p>La seule constante est le changement</p>
+  </header>
+
+  <main id="maincontainer">
+
+    <!-- <a href= "#"><img id="maingauche" src="img/gauche.png"/>
+    </a>-->
+
+
+    <article id="article">
+
+    <main>
+      <h2>Article du 10 Février</h2>
+      <p>Création des flèches qui correspondent au contenu de chaque page correspondante.</br>
+      
+      </p>
+</main>
+        <div>
+                    <a href="index.php?content=2017_02_13.php"><img id="icones" src="img/gauche.png"/> </a>
+
+          
+                    <a href="index.php?content=2017_02_09.php"><img id="icones" src="img/droite.png"/> </a>
+                  </div>
+
+
+    </article>
+
+
+    <aside id="aside">
+      <ul>
+          <li><a  href="docs/2017_02_10.html">2017_02_13</a></li><li><a  href="docs/2017_02_10.html">2017_02_10</a></li><li><a  href="docs/2017_02_10.html">2017_02_09</a></li><li><a  href="docs/2017_02_10.html">2017_02_08</a></li><li><a  href="docs/2017_02_10.html">2017_02_07</a></li><li><a  href="docs/2017_02_10.html">2017_02_06</a></li>      </ul>
+  </aside>
+
+
+
+  </main>
+  <div id="form-container">
+    <h2>Nouvel article</h2><br/>
+    <form action="insertionArticle.php" method="POST">
+     <p>Date de l'article: <input type="date" name="date"/></p><br/>
+     <p>Texte: <br/><br/><textarea name="message" rows="10" cols="50"></textarea></p>
+     <br/>
+     <input type="submit" name="ok" value="Envoyer">
+    </form>
+  </div>
+
+  <footer id="footercontainer">
+    <ul class="social">
+      <a target="_blank" href="https://www.facebook.com/mahana.houdini"><i class="fa fa-facebook"></i></a>
+      <a target="_blank" href="https://twitter.com/MahanaD2"><i class="fa fa-twitter"></i></a>
+      <a target="_blank" href="https://www.instagram.com/mahana_delacour/"><i class="fa fa-instagram"></i></a>
+      <a target="_blank" href="http://m-a-h-a-n-a.tumblr.com/"><i class="fa fa-tumblr"></i></a>
+    </ul>
+  </footer>
+
+</body>
+</html>
+
+
+<!--
+Solution de Max:
+$path_parts = pathinfo($entry);
+echo "<li><a href='index.php?content=$entry'>" . $path_parts['filename'] . "</a></li>";
+
+solution Daniel:
+$justname = basename($entry, ".php");
+echo "<li><a href='index.php?content=$justname'>$justname</a></li>";
+
+romain:
+$article_dir = "billets";
+
+if(isset($_GET['content']))
+{
+  $article_path = "$article_dir/" . $_GET["content"] . ".php";
+
+  if(
+    dirname(
+      realpath($article_path)
+      ) == (
+      realpath("./$articles_dir")
+        )
+    )
+}
+
+
+  <li><a href="index.php?content=home.php" >Tableau de bord</a></li>
+  <li><a href="index.php?content=06_02_2017.php" >Article du 6 Février</a></li>
+  <li><a href="index.php?content=07_02_2017.php" >Article du 7 Février</a></li>
+-->
