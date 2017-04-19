@@ -15,9 +15,9 @@ $entries = scandir("billets", SCANDIR_SORT_DESCENDING);
 
 <body>
   <header id="headercontainer">
-      <h2 class="animated bounceIn">Blog de Mahana</h2>
-      <h2>Tableau de bord</h2>
-          <p>La seule constante est le changement</p>
+      <h2 class="animated bounceIn">Mahana</h2>
+      <h2>BLOG</h2>
+          <p>"La seule constante est le changement"<br/> Héraclite</p>
   </header>
 
   <main id="maincontainer">
@@ -48,7 +48,7 @@ $entries = scandir("billets", SCANDIR_SORT_DESCENDING);
                  }
                  $current_file = array_search($_GET["content"] , $entries);
 
-          
+
                  /* affiche la clé (du tableau numéroté) donc: 0, 1, 2, 3
                  find out the position of a value in an array:
                  http://stackoverflow.com/questions/2399310/php-how-to-find-out-the-position-of-a-value-in-an-array
